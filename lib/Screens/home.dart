@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:students/Screens/EventPage.dart';
+import 'package:students/Screens/requestEvent.dart';
 import 'package:students/Screens/webview.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -115,6 +116,16 @@ class _HomeState extends State<Home> {
                 decoration: BoxDecoration(
                   color: Colors.blue,
                 ),
+              ),
+              ListTile(
+                title: Text('Request Event'),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              RequestEventForm()));
+                },
               ),
               ListTile(
                 title: Text('About VIT Bhopal'),
