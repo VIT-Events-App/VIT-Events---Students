@@ -15,6 +15,7 @@ class Webview extends StatelessWidget {
       ),
       body: WebView(
         initialUrl: url,
+        // initialUrl: 'https://google.com',
         javascriptMode: JavascriptMode.unrestricted,
       ),
     );

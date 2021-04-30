@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:students/UI%20models/landingpage.dart';
 
 import 'Screens/home.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         primaryIconTheme: IconThemeData(color: Color(0xFF303D6B))
       ),
-      home: Home(),
+      home: LandingPage(),
     );
   }
 }

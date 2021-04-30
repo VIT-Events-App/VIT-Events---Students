@@ -30,7 +30,10 @@ class _HomeState extends State<Home> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("VIT Bhopal", style: TextStyle(color: Color(0xFF303D6B)),),
+          title: Text(
+            "VIT Bhopal",
+            style: TextStyle(color: Color(0xFF303D6B)),
+          ),
           backgroundColor: Colors.white,
           elevation: 0,
         ),
@@ -88,10 +91,18 @@ class _HomeState extends State<Home> {
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 25,
-                      fontWeight: FontWeight.normal),
+                      fontWeight: FontWeight.w400,
+                      fontStyle: FontStyle.italic
+                      ),
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  // color: Color.fromRGBO(48, 61, 107, 1)  // Colors(0XFF303D6B)
+                  image: DecorationImage(
+                    image: AssetImage("assets/vit.jpeg"),
+                    fit: BoxFit.fill,
+                    colorFilter: ColorFilter.mode(
+                        Colors.black.withOpacity(0.8), BlendMode.darken),
+                  ),
                 ),
               ),
               ListTile(

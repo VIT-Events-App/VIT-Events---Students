@@ -34,18 +34,14 @@ class _RequestEventFormState extends State<RequestEventForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Request an Event"),
+        title: Text("Request an Event", style: TextStyle(color: Color(0XFF303D6B)),),
+        backgroundColor: Colors.white,
+        elevation: 0,
       ),
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Expanded(
-            //   flex: 1,
-            //   child: Container(
-            //     child: Center(child: Image.asset(Assets.vitb_dsc_logo)),
-            //   ),
-            // ),
             SizedBox(
               height: 20,
             ),
@@ -87,6 +83,10 @@ class _RequestEventFormState extends State<RequestEventForm> {
                         onPressed: () {
                           addToFirestore();
                         },
+                        style: ElevatedButton.styleFrom(
+                          primary: Color(0XFF303D6B), // background
+                          onPrimary: Colors.white, // foreground
+                        ),
                         child: Text("submit"),
                       ),
                     ],
