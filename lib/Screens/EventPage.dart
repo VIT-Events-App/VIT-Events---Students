@@ -28,50 +28,95 @@ class _EventsPageState extends State<EventsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Event Details"),
+          title: Text("Event Details", style: TextStyle(color: Color(0xFF303D6B)),),
+          backgroundColor: Colors.white,
+          elevation: 0,
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              widget.title,
-              style: TextStyle(fontSize: 50),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0),
+          child: SingleChildScrollView(
+            physics: ClampingScrollPhysics(),
+                      child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                      top: 20, left: 0, right: 0, bottom: 20),
+                  child: Image.network(
+                    widget.urlToImg,
+                    height: 200,
+                    width: MediaQuery.of(context).size.width,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+                Text(
+                  widget.title,
+                  style: TextStyle(fontSize: 50, color: Color(0xFF303D6B)),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                RichText(
+                  text: TextSpan(
+                    children: [
+                      WidgetSpan(
+                        child: Icon(Icons.access_time_sharp, size: 16),
+                      ),
+                      TextSpan(
+                        text: " ${widget.time}",
+                        style: TextStyle(fontSize: 15, color: Colors.black),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                RichText(
+                  text: TextSpan(
+                    children: [
+                      WidgetSpan(
+                        child: Icon(Icons.location_on, size: 16),
+                      ),
+                      TextSpan(
+                        text: " VIT Bhopal University",
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.black,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Text(
+                  "About Event",
+                  style: TextStyle(fontSize: 25),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  widget.description,
+                  style: TextStyle(fontSize: 18),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+              ],
             ),
-                        SizedBox(
-              height: 20,
-            ),
-            Text(
-              widget.time,
-              style: TextStyle(fontSize: 20),
-            ),
-
-            SizedBox(
-              height: 20,
-            ),
-            Image.network(
-              widget.urlToImg,
-              height: 200,
-              width: MediaQuery.of(context).size.width,
-              fit: BoxFit.contain,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              widget.description,
-              style: TextStyle(fontSize: 20),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-          ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         label: Text("Join Event Now"),
+        backgroundColor: Color(0xFF303D6B),
         onPressed: () {
           launchURL(widget.urlToEvent);
         },

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:students/Screens/EventPage.dart';
 import 'package:students/Screens/requestEvent.dart';
 import 'package:students/Screens/webview.dart';
+import 'package:students/UI%20models/event-tile.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
@@ -28,7 +29,10 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Home"),
+          centerTitle: true,
+          title: Text("VIT Bhopal", style: TextStyle(color: Color(0xFF303D6B)),),
+          backgroundColor: Colors.white,
+          elevation: 0,
         ),
         body: StreamBuilder(
           stream: ref.snapshots(),
@@ -37,66 +41,39 @@ class _HomeState extends State<Home> {
               itemCount: snapshot.hasData ? snapshot.data.docs.length : 0,
               itemBuilder: (context, index) {
                 return InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => EventsPage(
-                                  title: snapshot.data.docs[index]
-                                      .data()['title']
-                                      .toString(),
-                                  description: snapshot.data.docs[index]
-                                      .data()['description']
-                                      .toString(),
-                                  time: snapshot.data.docs[index]
-                                      .data()['time']
-                                      .toString(),
-                                  urlToEvent: snapshot.data.docs[index]
-                                      .data()['urlToEvent']
-                                      .toString(),
-                                  urlToImg: snapshot.data.docs[index]
-                                      .data()['imageUrl']
-                                      .toString(),
-                                )));
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Card(
-                      elevation: 2,
-                      child: Container(
-                        margin: EdgeInsets.all(15),
-                        height: 150,
-                        child: Column(
-                          children: [
-                            Text(snapshot.data.docs[index]
-                                .data()['title']
-                                .toString()),
-                            Text(snapshot.data.docs[index]
-                                .data()['short description']
-                                .toString()),
-                            Text(snapshot.data.docs[index]
-                                .data()['time']
-                                .toString()),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.network(
-                                  snapshot.data.docs[index]
-                                      .data()['imageUrl']
-                                      .toString(),
-                                  height: 80,
-                                  width: MediaQuery.of(context).size.width,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                );
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => EventsPage(
+                                    title: snapshot.data.docs[index]
+                                        .data()['title']
+                                        .toString(),
+                                    description: snapshot.data.docs[index]
+                                        .data()['description']
+                                        .toString(),
+                                    time: snapshot.data.docs[index]
+                                        .data()['time']
+                                        .toString(),
+                                    urlToEvent: snapshot.data.docs[index]
+                                        .data()['urlToEvent']
+                                        .toString(),
+                                    urlToImg: snapshot.data.docs[index]
+                                        .data()['imageUrl']
+                                        .toString(),
+                                  )));
+                    },
+                    child: EventTile(
+                      image: snapshot.data.docs[index]
+                          .data()['imageUrl']
+                          .toString(),
+                      shortDes: snapshot.data.docs[index]
+                          .data()['short description']
+                          .toString(),
+                      time: snapshot.data.docs[index].data()['time'].toString(),
+                      title:
+                          snapshot.data.docs[index].data()['title'].toString(),
+                    ));
               },
             );
           },
@@ -123,8 +100,7 @@ class _HomeState extends State<Home> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>
-                              RequestEventForm()));
+                          builder: (context) => RequestEventForm()));
                 },
               ),
               ListTile(
